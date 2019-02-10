@@ -1,0 +1,60 @@
+FORMAT: 1.0
+HOST: http://snLibrary.oraclecloud.com:7002
+
+# SN Library Music API
+This API gives you access to the SN library's music, singer, catagories
+
+# Group Singer Resources
+it gives you access to the Singer and Music details
+
+## Search and create singer [/library/person{?name,genres,limit}]
+You can create and search Singer details. In search option it will also gives the details of the music related to the Singer.
++ Parameters
+    + name: Nicky Minaz (string, optional)
+    + genres: Rap (string, optional)
+    + limit (number, optional)
+        + Default: `10`
+
+### Search Singer [GET]
+Get the Singer and Book details for your search, it takes the query paramters name, genres, type and limit the number of Singer returned.
+
++ Request (application/json)
+    + Headers
+    
+            restClient: Postman
+            
++ response 200 (application/json; charset=utf-8)
+    + Attributes
+        + Count (Search Count)
+        + singer (array[Singer])
+
+### Create Singer [POST]
+it creates the Singer and related music in the system
++ Request (application/json)
+    + Attributes (Singer)
++ response 200 (application/json; charset=utf-8)
+
+# Data Structures
+
+## Search Count (object)
++ total_count: 1 (number, required) - total Count of records
+
+## Author (object)
++ author(array[Person Info], required)
+
+## Singer (object)
++ singer(array[Person Info], required)
+
+## Person Info (object)
++ name: Nicky Minaz (string, required) - name of the singer
++ id: per34555 (string, optional)
++ country: US (string, optional)
++ dob: `08-December-1982` (string, optional)
++ genres: Hip Hop, Pop (string, required)
++ musics(array[Music], optional)
+
+## Music (object)
++ name: Good Form (string, required)
++ id: NM1234 (string, optional)
++ language: English (string, optional)
++ release date: Jan 2018 (string, optional)
