@@ -1,0 +1,58 @@
+FORMAT: 1.0
+HOST: http://snLibrary.oraclecloud.com:7002
+
+# SN Library Book API
+This API gives you access to the SN library's books, author, catagories
+
+# Group Author Resources
+it gives you access to the author and book details
+
+## Search and create author [/library/person{?name,genres,limit}]
+You can create and search Author details. In search option it will also gives the details of thebook related to the author.
++ Parameters
+    + name: Munsi Premchand (string, optional)
+    + genres: comedy (string, optional)
+    + limit (number, optional)
+        + Default: `10`
+
+### Search Author [GET]
+Get the Authots and Book details for your search, it takes the query paramters name, genres and limit the numbe of author returned.
+
++ Request (application/json)
+    + Headers
+    
+            restClient: Postman1
+            
++ response 200 (application/json; charset=utf-8)
+    + Attributes
+        + Count (Search Count)
+        + authors (array[Author])
+
+### Create Author [POST]
+it creates the Author and related books in the system
++ Request (application/json)
+    + Attributes (Author)
++ response 200 (application/json; charset=utf-8)
+        
+# Data Structures
+
+## Search Count (object)
++ total_count: 1 (number, required) - total Count of records
+
+## Author (object)
++ author(array[Person Info], required)
+
+## Person Info (object)
++ name: David Walliams (string, required) - name of the author
++ id: per123456 (string, optional)
++ country: UK (string, optional)
++ dob: 20-August-1971 (string, optional)
++ genres: comedy, fiction (string, required)
++ books(array[Book], optional)
+
+## Book (object)
++ name: Gangsta Granny (string, required)
++ id: DW007 (string, optional)
++ language: English (string, optional)
++ edition: 1 (number, optional)
++ catagory: comedy
